@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { View } from '@tarojs/components'
 import { callFn } from '../../utils/cloud'
+import PageContainer from '../../components/PageContainer'
 
 function Home() {
   useEffect(() => {
@@ -9,7 +9,7 @@ function Home() {
     })
   }, [])
 
-  return <View />
+  return <PageContainer title='甜酒账簿' />
 }
 
 export default Home
