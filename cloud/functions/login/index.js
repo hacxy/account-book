@@ -1,34 +1,58 @@
-// 云函数模板
-// 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
-
 const cloud = require("wx-server-sdk");
-// 初始化 cloud
-cloud.init({
-  // API 调用都保持和云函数当前所在环境一致
-  env: cloud.DYNAMIC_CURRENT_ENV,
-});
+const crypto = require("crypto");
 
-// const db = cloud.database();
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
+
+const db = cloud.database();
+
 /**
- * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
- *
- * event 参数包含小程序端调用传入的 data
- *
+ * 将 openid hash 为 2-6 位的短用户名
+ * 取 sha256 前 4 字节转 base36，截取前 6 位，最短保证 2 位
  */
-exports.main = async (event, context) => {
-  console.log(event);
-  console.log(context);
-  // 可执行其他自定义逻辑
-  // console.log 的内容可以在云开发云函数调用日志查看
+function hashOpenid(openid) {
+  const hex = crypto.createHash("sha256").update(openid).digest("hex");
+  const num = parseInt(hex.slice(0, 8), 16);
+  const name = num.toString(36).slice(0, 6);
+  return name.length >= 2 ? name : name.padEnd(2, "0");
+}
 
-  // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
-  const wxContext = cloud.getWXContext();
+exports.main = async (event, context) => {
+  const { OPENID } = cloud.getWXContext();
+
+  if (!OPENID) {
+    return { code: 401, message: "无法获取用户身份" };
+  }
+
+  const userCollection = db.collection("user");
+
+  // 查询用户是否已存在
+  const { data } = await userCollection
+    .where({ openid: OPENID })
+    .limit(1)
+    .get();
+
+  if (data.length > 0) {
+    return { code: 0, data: data[0] };
+  }
+
+  // 新用户：创建记录
+  const username = hashOpenid(OPENID);
+  const now = db.serverDate();
+  const result = await userCollection.add({
+    data: {
+      openid: OPENID,
+      username,
+      createdAt: now,
+      updatedAt: now,
+    },
+  });
 
   return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-    env: wxContext.ENV,
+    code: 0,
+    data: {
+      _id: result._id,
+      openid: OPENID,
+      username,
+    },
   };
 };

@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
-import { useDidShow, useDidHide } from '@tarojs/taro'
+import Taro, { useDidShow, useDidHide } from '@tarojs/taro'
 // 全局样式
 import './app.scss'
 
+// TODO: 替换为微信开发者工具中的云环境 ID
+Taro.cloud.init({ env: 'cloud1-3g63vlst5e372c09' })
+
 function App(props: { children: React.ReactNode }) {
-  // 可以使用所有的 React Hooks
   useEffect(() => {})
 
   // 对应 onShow

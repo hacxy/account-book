@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "client/dist/",
   "cloudfunctionRoot": "cloud/functions/",
-  "projectname": "taro-react-wxcloud-template",
+  "projectname": "account-book",
   "description": "",
   "appid": "wxea72eae9f52cfbca",
   "setting": {
