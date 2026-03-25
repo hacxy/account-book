@@ -1,7 +1,6 @@
 {
-  "miniprogramRoot": "client/dist/",
-  "cloudfunctionRoot": "cloud/functions/",
-  "projectname": "taro-react-wxcloud-template",
+  "miniprogramRoot": "dist/",
+  "projectname": "account-book",
   "description": "",
   "appid": "wxea72eae9f52cfbca",
   "setting": {
@@ -38,17 +37,12 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.6.2",
-  "srcMiniprogramRoot": "client/dist/",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {},
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "condition": {},
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  },
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
-  "simulatorPluginLibVersion": {}
+  "editorSetting": {}
 }

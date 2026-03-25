@@ -1,6 +1,6 @@
 {
-  "libVersion": "3.15.0",
-  "projectname": "account-book",
+  "libVersion": "3.6.2",
+  "projectname": "taro-react-wxcloud-template",
   "condition": {},
   "setting": {
     "urlCheck": true,
