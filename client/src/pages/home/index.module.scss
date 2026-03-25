@@ -1,0 +1,20 @@
+.fab {
+  position: fixed;
+  bottom: 60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 88rpx;
+  padding: 0 48rpx;
+  background: #ff6b35;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 53, 0.4);
+}
+
+.fabText {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #fff;
+}

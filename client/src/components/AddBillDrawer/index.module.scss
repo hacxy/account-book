@@ -1,0 +1,314 @@
+// ---- overlay ----
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.overlayClosing {
+  animation: fadeOut 0.28s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+// ---- drawer panel ----
+.drawerPanel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85vh;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  border-radius: 32rpx 32rpx 0 0;
+  overflow: hidden;
+  background: #f7f7f7;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.drawerPanelClosing {
+  animation: slideDown 0.28s ease-in forwards;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+// ---- handle ----
+.handle {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding: 20rpx 0 12rpx;
+  background: #fff;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 64rpx;
+    height: 8rpx;
+    border-radius: 4rpx;
+    background: #e0e0e0;
+  }
+}
+
+// ---- scrollable form area ----
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+}
+
+.scrollContent {
+  padding-bottom: 24rpx;
+}
+
+// ---- type tabs ----
+.typeTabs {
+  display: flex;
+  background: #fff;
+  padding: 16rpx 32rpx 0;
+}
+
+.typeTab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 30rpx;
+  color: #999;
+  border-bottom: 4rpx solid transparent;
+}
+
+.typeTabActive {
+  color: #ff6b35;
+  border-bottom-color: #ff6b35;
+  font-weight: 600;
+}
+
+// ---- amount area ----
+.amountArea {
+  background: #fff;
+  padding: 28rpx 40rpx 36rpx;
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
+.amountCurrency {
+  font-size: 36rpx;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.amountValue {
+  font-size: 72rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  word-break: break-all;
+}
+
+.amountPlaceholder {
+  color: #ccc;
+}
+
+.amountCursor {
+  display: inline-block;
+  width: 4rpx;
+  height: 72rpx;
+  background: #ff6b35;
+  vertical-align: bottom;
+  margin-left: 4rpx;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+// ---- form rows ----
+.form {
+  margin-top: 16rpx;
+  background: #fff;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx;
+  height: 104rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.formLabel {
+  font-size: 28rpx;
+  color: #666;
+  width: 120rpx;
+  flex-shrink: 0;
+}
+
+.formValue {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8rpx;
+}
+
+.formValuePlaceholder {
+  color: #ccc;
+}
+
+.formArrow {
+  font-size: 24rpx;
+  color: #ccc;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.formArrowOpen {
+  transform: rotate(90deg);
+}
+
+// ---- category inline panel ----
+.categoryPanel {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16rpx 16rpx 24rpx;
+  background: #fafafa;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.categoryItem {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 16rpx 8rpx;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+}
+
+.categoryItemActive {
+  background: #fff1ec;
+}
+
+.categoryIcon {
+  font-size: 44rpx;
+  line-height: 1;
+}
+
+.categoryName {
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+}
+
+.categoryNameActive {
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+.noteInput {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  text-align: right;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  min-height: 40rpx;
+  width: 100%;
+}
+
+// ---- save button ----
+.saveBtn {
+  margin: 32rpx 32rpx 0;
+  height: 96rpx;
+  background: #ff6b35;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.saveBtnDisabled {
+  background: #ffb89a;
+}
+
+// ---- custom keyboard ----
+.keyboard {
+  flex-shrink: 0;
+  background: #f2f2f7;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.keyboardRow {
+  display: flex;
+}
+
+.key {
+  flex: 1;
+  height: 110rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #1a1a1a;
+  background: #fff;
+  border: 1rpx solid #e5e5ea;
+
+  &:active {
+    background: #e5e5ea;
+  }
+}
+
+.keyAction {
+  background: #d1d1d6;
+  font-size: 28rpx;
+  color: #3c3c43;
+
+  &:active {
+    background: #bcbcc4;
+  }
+}
+
+.keyConfirm {
+  background: #ff6b35;
+  color: #fff;
+  font-size: 28rpx;
+
+  &:active {
+    background: #e05528;
+  }
+}
+
+.keyEmpty {
+  background: #f2f2f7;
+  border-color: #f2f2f7;
+  pointer-events: none;
+}
