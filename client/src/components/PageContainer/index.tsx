@@ -38,26 +38,26 @@ export default function PageContainer({
   }
 
   return (
-    <View className={styles['page-container']}>
+    <View className={styles.pageContainer}>
       {/* fixed 导航栏 */}
-      <View className={styles['page-container__navbar']} style={{ paddingTop: `${statusBarHeight}px` }}>
-        <View className={styles['page-container__bar']} style={{ height: `${navBarHeight}px` }}>
-          <View className={styles['page-container__bar-left']}>
+      <View className={styles.navbar} style={{ paddingTop: `${statusBarHeight}px` }}>
+        <View className={styles.bar} style={{ height: `${navBarHeight}px` }}>
+          <View className={styles.barLeft}>
             {shouldShowBack && (
-              <View className={styles['page-container__back']} onClick={handleBack}>
+              <View className={styles.back} onClick={handleBack}>
                 <ArrowLeft />
               </View>
             )}
           </View>
-          <View className={styles['page-container__bar-title']}>{title}</View>
-          <View className={styles['page-container__bar-right']}>{right}</View>
+          <View className={styles.barTitle}>{title}</View>
+          <View className={styles.barRight}>{right}</View>
         </View>
       </View>
 
       {/* 占位，撑开 fixed 导航栏遮挡的高度 */}
       <View style={{ height: `${totalHeight}px` }} />
 
-      <View className={styles['page-container__content']}>{children}</View>
+      <View className={styles.content}>{children}</View>
     </View>
   )
 }

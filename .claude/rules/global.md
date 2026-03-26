@@ -33,7 +33,7 @@ pnpm build    # 构建 client 微信小程序
 | 前端框架 | Taro 4.1.11 + React 18 |
 | 语言 | TypeScript（严格模式） |
 | UI 组件库 | NutUI React Taro（`@nutui/nutui-react-taro` v2.6.14） |
-| 样式 | Sass（`.scss`），**不使用 CSS Modules** |
+| 样式 | Sass（`.module.scss`），**强制使用 CSS Modules** |
 | 包管理 | pnpm |
 | 构建 | Webpack 5 |
 | 后端 | 微信云开发（CloudBase），wx-server-sdk |
@@ -68,6 +68,16 @@ pnpm build    # 构建 client 微信小程序
 
 - 每个页面/组件对应同名 `.module.scss` 文件
 - **强制使用 CSS Modules**，类名通过 `styles.xxx` 引用
+- CSS Modules 类名**统一使用小驼峰（camelCase）**，禁止 BEM 或 kebab-case
+  ```scss
+  // ✅
+  .barTitle { }
+  .formRow { }
+  .keyAction { }
+  // ❌
+  .bar-title { }
+  .page-container__bar { }
+  ```
 - 不使用内联 style，除非动态计算值
 
 ### 文件结构（页面示例）
@@ -75,7 +85,7 @@ pnpm build    # 构建 client 微信小程序
 ```
 src/pages/home/
 ├── index.tsx        # 页面组件
-├── index.scss       # 页面样式
+├── index.module.scss  # 页面样式
 └── index.config.ts  # 页面配置（navigationBarTitleText 等）
 ```
 
