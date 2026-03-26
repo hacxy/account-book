@@ -8,6 +8,8 @@ import styles from './index.module.scss'
 interface PageContainerProps {
   /** 导航栏标题 */
   title?: React.ReactNode
+  /** 左侧自定义内容，传入时替代返回按钮 */
+  left?: React.ReactNode
   /** 右侧自定义内容 */
   right?: React.ReactNode
   /** 是否显示返回按钮，默认根据页面栈自动判断 */
@@ -19,6 +21,7 @@ interface PageContainerProps {
 
 export default function PageContainer({
   title,
+  left,
   right,
   showBack,
   onBack,
@@ -43,10 +46,14 @@ export default function PageContainer({
       <View className={styles.navbar} style={{ paddingTop: `${statusBarHeight}px` }}>
         <View className={styles.bar} style={{ height: `${navBarHeight}px` }}>
           <View className={styles.barLeft}>
-            {shouldShowBack && (
-              <View className={styles.back} onClick={handleBack}>
-                <ArrowLeft />
-              </View>
+            {left !== undefined ? (
+              left
+            ) : (
+              shouldShowBack && (
+                <View className={styles.back} onClick={handleBack}>
+                  <ArrowLeft />
+                </View>
+              )
             )}
           </View>
           <View className={styles.barTitle}>{title}</View>

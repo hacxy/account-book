@@ -36,23 +36,22 @@ exports.main = async (event, context) => {
   }
 
   // 新用户：创建记录
-  const username = hashOpenid(OPENID);
-  const now = db.serverDate();
-  const result = await userCollection.add({
-    data: {
-      openid: OPENID,
-      username,
-      createdAt: now,
-      updatedAt: now,
-    },
-  });
+  const nickname = hashOpenid(OPENID);
+  const newUser = {
+    openid: OPENID,
+    nickname,
+    avatarUrl: "",
+    reminderEnabled: false,
+    reminderTime: "21:00",
+    reminderSubscribed: false,
+  };
+  const result = await userCollection.add({ data: newUser });
 
   return {
     code: 0,
     data: {
       _id: result._id,
-      openid: OPENID,
-      username,
+      ...newUser,
     },
   };
 };
